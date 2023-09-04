@@ -4,6 +4,10 @@ test('Check if 1 plus 1 equal 2', () => {
   expect(calculator.add(1,1)).toBe(2);
 })
 
+test('Check if "1" plus 1 equal Arguments are not valid', () => {
+  expect(calculator.add("1",1)).toBe('Arguments are not valid');
+})
+
 test('Check if 1 minus 1 equal 0', () => {
   expect(calculator.substract(1,1)).toBe(0);
 })

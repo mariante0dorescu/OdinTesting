@@ -1,26 +1,103 @@
-const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z']
+const letters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+];
 
-function encode(str,shift) {
-	let encoded = "";
-  
-  for(const letter of str.split('')) {
-    if()
+function encode(str, shift = 1) {
+  let encoded = '';
 
-  	else if((letters.indexOf(letter) + shift) >= letters.length) {
-    	encoded += (letters[(letters.indexOf(letter) + shift) - letters.length]) ;
-
+  for (const letter of str.split('')) {
+    if (checkPunctation(letter) || checkNumber(letter)) {
+      encoded += letter;
+    } else if (letters.indexOf(letter.toLowerCase()) + shift >= letters.length) {
+      if (isUpperCase(letter)) {
+        encoded += letters[letters.indexOf(letter.toLowerCase()) + shift - letters.length].toUpperCase();
+      } else {
+        encoded += letters[letters.indexOf(letter) + shift - letters.length];
+      }
     } else {
-    	encoded += letters[letters.indexOf(letter) + shift]
+      if (isUpperCase(letter)) {
+        encoded += letters[letters.indexOf(letter.toLowerCase()) + shift].toUpperCase();
+      } else {
+        encoded += letters[letters.indexOf(letter) + shift];
+      }
     }
   }
-  
+
   return encoded;
 }
-//console.log(letters.length)
 
 // helper
 function checkPunctation(letter) {
-  let punctation = ['!','@', '#']
+  punctation = [
+    ' ',
+    '!',
+    '@',
+    '#',
+    '$',
+    '%',
+    '^',
+    '&',
+    '*',
+    '(',
+    ')',
+    '[',
+    ']',
+    '{',
+    '}',
+    ':',
+    ';',
+    '"',
+    "'",
+    '|',
+    ',',
+    '.',
+    '?',
+    '/',
+    '+',
+    '-',
+    '=',
+    '~',
+    '`',
+  ];
+  if (punctation.includes(letter)) {
+    return letter;
+  }
 }
 
-console.log(encode('abz', 1))
+function checkNumber(letter) {
+  const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  if (numbers.includes(letter)) {
+    return letter;
+  }
+}
+
+function isUpperCase(letter) {
+  return letter === letter.toUpperCase() && letter !== letter.toLowerCase();
+}
+
+module.exports = encode;

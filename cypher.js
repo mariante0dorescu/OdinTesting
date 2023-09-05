@@ -1,6 +1,6 @@
 
 function encode(str, shift = 1) {
-  if(!str) return;
+  if(!str) return "No empty strings allowed";
   
   let encoded = '';
   

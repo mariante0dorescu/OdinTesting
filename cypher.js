@@ -95,7 +95,7 @@ function runTime(func) {
   console.log(`Total time ${end - start} miliseconds`);
 }
 
-runTime(caesarCypher('abc!!!aaaa', 1))
-runTime(encode('abc!!!aaaa', 1))
+// runTime(caesarCypher('abc!!!aaaa', 1))
+// runTime(encode('abc!!!aaaa', 1))
 
 module.exports = encode;
